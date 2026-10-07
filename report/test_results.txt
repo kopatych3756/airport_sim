@@ -1,0 +1,44 @@
+Проверка модульной версии проекта, вариант 31
+
+1. Сборка CMake:
+   cmake -S . -B build-test
+   cmake --build build-test
+   Результат: успешно, предупреждений компилятора нет.
+
+2. CTest:
+   6/6 tests passed.
+
+   nominal             — штатная работа нескольких ВПП;
+   emergency           — аварийный приоритет по топливу;
+   closure             — закрытие ВПП без прерывания начатой операции;
+   incompatible        — самолёт, которому не подходит имеющаяся ВПП;
+   safety              — соблюдение safety interval;
+   duplicate_aircraft  — отклонение повторяющегося номера самолёта.
+
+3. scripts/run_tests.sh:
+   All tests passed.
+
+   Дополнительно скрипт проверяет:
+   - COMPLETE при штатном завершении;
+   - SHIFT-END при окончании смены;
+   - STOP и termination=USER_INTERRUPT после SIGINT;
+   - код возврата 130 после SIGINT;
+   - сообщение Duplicate aircraft number: A001.
+
+4. Проверка памяти и неопределённого поведения:
+   gcc -std=c11 -Wall -Wextra -Wpedantic -fsanitize=address,undefined \
+       -Isrc src/main.c src/config.c src/io.c src/simulation.c -o airport_sim_asan
+
+   Пять основных тестовых конфигураций выполнены без сообщений ASan/UBSan.
+
+5. Основной сценарий, seed=31:
+   termination=ALL_REQUESTS_COMPLETED
+   elapsed_ticks=64
+   aircraft_total=30
+   landed=10
+   took_off=14
+   diverted=6
+   waiting=0
+   operating=0
+   pending=0
+   dispatcher=ATC assignments=24 emergency_assignments=1
