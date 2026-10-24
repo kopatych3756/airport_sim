@@ -1,7 +1,10 @@
 #ifndef AIRPORT_H
 #define AIRPORT_H
 
-#include <signal.h>
+#include <pthread.h>
+#ifndef USE_CONDVAR
+#include <semaphore.h>
+#endif
 
 #define MAX_RUNWAYS 10
 #define MAX_TYPES 20
@@ -24,6 +27,7 @@ enum Priority {
 enum PlaneState {
     PENDING = 0,
     WAITING,
+    ASSIGNED,
     RUNNING,
     DONE,
     DIVERTED
@@ -47,7 +51,6 @@ typedef struct {
     int next_free_tick;
 
     int operations;
-    int busy_ticks;
 } Runway;
 
 typedef struct {
@@ -63,8 +66,8 @@ typedef struct {
     int emergency;
     int runway_index;
     int duration;
-    int wait_ticks;
     int times_started;
+    int fuel_tick;
 } Plane;
 
 typedef struct {
@@ -110,8 +113,6 @@ extern int flow_count;
 extern Dispatcher dispatcher;
 
 extern int current_tick;
-extern int elapsed_ticks;
-extern volatile sig_atomic_t stop_requested;
 
 int load_config(const char *path);
 int generate_flows(void);
@@ -119,11 +120,28 @@ int generate_flows(void);
 void set_quiet_mode(int quiet);
 int open_log_file(const char *path);
 void close_log_file(void);
+int io_failed(void);
 void print_line(const char *format, ...);
 void event(const char *name, const char *format, ...);
 
 const char *run_simulation(void);
 void print_termination_event(const char *reason);
 void print_summary(const char *reason);
+
+typedef struct {
+    pthread_mutex_t mutex;
+    int pending;
+#ifdef USE_CONDVAR
+    pthread_cond_t condition;
+#else
+    sem_t semaphore;
+#endif
+} Notification;
+int notification_init(Notification *n);
+void notification_destroy(Notification *n);
+void notification_send(Notification *n);
+void notification_wait(Notification *n);
+void checked(int error, const char *operation);
+const char *sync_backend(void);
 
 #endif

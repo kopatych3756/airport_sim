@@ -1,3 +1,7 @@
+#define _POSIX_C_SOURCE 200809L
+#include <errno.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "airport.h"
 
 #include <stdio.h>
@@ -105,157 +109,100 @@ static int add_plane(const char *number, int operation, int request_tick,
     return 0;
 }
 
-int load_config(const char *path) {
-    FILE *file;
-    char line[256];
-
-    file = fopen(path, "r");
-    if (file == NULL) {
-        perror(path);
-        return -1;
-    }
-
-    while (fgets(line, sizeof(line), file) != NULL) {
-        char key[32];
-        char a[32];
-        int x, y, z, w;
-
-        if (line[0] == '#' || line[0] == '\n') continue;
-        if (sscanf(line, "%31s", key) != 1) continue;
-
-        if (strcmp(key, "SEED") == 0) {
-            unsigned int value;
-            if (sscanf(line, "%*s %u", &value) == 1) seed_value = value;
-
-        } else if (strcmp(key, "MAX_TICKS") == 0) {
-            if (sscanf(line, "%*s %d", &x) == 1) max_ticks = x;
-
-        } else if (strcmp(key, "DELAY_MS") == 0) {
-            if (sscanf(line, "%*s %d", &x) == 1) delay_ms = x;
-
-        } else if (strcmp(key, "EMERGENCY_FUEL_TICKS") == 0) {
-            if (sscanf(line, "%*s %d", &x) == 1) emergency_fuel_ticks = x;
-
-        } else if (strcmp(key, "PRIORITY_WEIGHTS") == 0) {
-            if (sscanf(line, "%*s %d %d %d", &x, &y, &z) == 3) {
-                priority_weights[LOW] = x;
-                priority_weights[NORMAL] = y;
-                priority_weights[HIGH] = z;
-            }
-
-        } else if (strcmp(key, "ARRIVAL_FUEL") == 0) {
-            if (sscanf(line, "%*s %d %d", &x, &y) == 2) {
-                arrival_fuel_min = x;
-                arrival_fuel_max = y;
-            }
-
-        } else if (strcmp(key, "ARRIVAL_BURN") == 0) {
-            if (sscanf(line, "%*s %d %d", &x, &y) == 2) {
-                arrival_burn_min = x;
-                arrival_burn_max = y;
-            }
-
-        } else if (strcmp(key, "RUNWAY") == 0) {
-            if (runway_count >= MAX_RUNWAYS) continue;
-
-            if (sscanf(line, "%*s %31s %d %d", a, &x, &y) == 3) {
-                Runway *r = &runways[runway_count++];
-                memset(r, 0, sizeof(*r));
-                snprintf(r->name, sizeof(r->name), "%s", a);
-                r->length = x;
-                r->safety = y;
-                r->plane_index = -1;
-            }
-
-        } else if (strcmp(key, "TYPE") == 0) {
-            if (type_count >= MAX_TYPES) continue;
-
-            if (sscanf(line, "%*s %31s %d %d %d", a, &x, &y, &z) == 4) {
-                PlaneType *t = &types[type_count++];
-                snprintf(t->name, sizeof(t->name), "%s", a);
-                t->required_length = x;
-                t->landing_time = y;
-                t->takeoff_time = z;
-            }
-
-        } else if (strcmp(key, "CLOSE") == 0) {
-            int runway_index;
-
-            if (closure_count >= MAX_CLOSURES) continue;
-            if (sscanf(line, "%*s %31s %d %d", a, &x, &y) != 3) continue;
-
-            runway_index = find_runway(a);
-            if (runway_index < 0) {
-                fprintf(stderr, "Unknown runway in CLOSE: %s\n", a);
-                fclose(file);
-                return -1;
-            }
-
-            closures[closure_count].runway_index = runway_index;
-            closures[closure_count].start_tick = x;
-            closures[closure_count].end_tick = y;
-            ++closure_count;
-
-        } else if (strcmp(key, "FLOW") == 0) {
-            int operation;
-
-            if (flow_count >= MAX_FLOWS) continue;
-            if (sscanf(line, "%*s %31s %d %d %d %d", a, &x, &y, &z, &w) != 5) continue;
-
-            operation = parse_operation(a);
-            if (operation < 0) {
-                fprintf(stderr, "Unknown operation in FLOW: %s\n", a);
-                fclose(file);
-                return -1;
-            }
-
-            flows[flow_count].operation = operation;
-            flows[flow_count].count = x;
-            flows[flow_count].first_tick = y;
-            flows[flow_count].min_interval = z;
-            flows[flow_count].max_interval = w;
-            ++flow_count;
-
-        } else if (strcmp(key, "AIRCRAFT") == 0) {
-            char operation_text[32];
-            char priority_text[32];
-            char type_name[32];
-            int request_tick, fuel, burn;
-            int operation, priority;
-
-            if (sscanf(line, "%*s %31s %31s %d %31s %d %d %31s",
-                       a, operation_text, &request_tick, type_name,
-                       &fuel, &burn, priority_text) != 7) {
-                continue;
-            }
-
-            operation = parse_operation(operation_text);
-            priority = parse_priority(priority_text);
-
-            if (operation < 0 || priority < 0 ||
-                add_plane(a, operation, request_tick, type_name,
-                          fuel, burn, priority) != 0) {
-                fclose(file);
-                return -1;
-            }
-
-        } else {
-            fprintf(stderr, "Unknown configuration command: %s\n", key);
-            fclose(file);
-            return -1;
-        }
-    }
-
-    fclose(file);
-
-    if (runway_count == 0 || type_count == 0) {
-        fprintf(stderr, "Configuration must contain at least one RUNWAY and one TYPE.\n");
-        return -1;
-    }
-
+static int number(const char *s, int *v) {
+    char *end;
+    errno = 0;
+    long x = strtol(s, &end, 10);
+    if (errno || !*s || *end || x < 0 || x > 1000000) return -1;
+    *v = (int)x;
     return 0;
 }
-
+int load_config(const char *path) {
+    int fd = open(path, O_RDONLY);
+    if (fd < 0) { perror(path); return -1; }
+    FILE *file = fdopen(fd, "r");
+    if (!file) { perror("fdopen"); close(fd); return -1; }
+    char line[1024];
+    int line_no = 0, bad = 0;
+    while (fgets(line, sizeof(line), file)) {
+        ++line_no;
+        if (!strchr(line, '\n') && !feof(file)) { bad = 1; break; }
+        char *comment = strchr(line, '#');
+        if (comment) *comment = '\0';
+        char *tokens[10], *save = NULL;
+        int n = 0;
+        for (char *t = strtok_r(line, " \t\r\n", &save); t; t = strtok_r(NULL, " \t\r\n", &save)) {
+            if (n == 10 || strlen(t) >= NAME_LEN) { bad = 1; break; }
+            tokens[n++] = t;
+        }
+        if (bad) break;
+        if (!n) continue;
+        int v[10] = {0};
+        const char *key = tokens[0];
+        int expected = 0, first_numeric = 1;
+        if (!strcmp(key, "SEED") || !strcmp(key, "MAX_TICKS") || !strcmp(key, "DELAY_MS") ||
+            !strcmp(key, "EMERGENCY_FUEL_TICKS")) expected = 2;
+        else if (!strcmp(key, "ARRIVAL_FUEL") || !strcmp(key, "ARRIVAL_BURN")) expected = 3;
+        else if (!strcmp(key, "PRIORITY_WEIGHTS")) expected = 4;
+        else if (!strcmp(key, "RUNWAY") || !strcmp(key, "CLOSE")) { expected = 4; first_numeric = 2; }
+        else if (!strcmp(key, "TYPE")) { expected = 5; first_numeric = 2; }
+        else if (!strcmp(key, "FLOW")) { expected = 6; first_numeric = 2; }
+        else if (!strcmp(key, "AIRCRAFT")) { expected = 8; first_numeric = 8; }
+        if (n != expected) { bad = 1; break; }
+        for (int i = first_numeric; i < n; ++i) if (number(tokens[i], &v[i])) bad = 1;
+        if (bad) break;
+        if (!strcmp(key, "SEED")) seed_value = (unsigned int)v[1];
+        else if (!strcmp(key, "MAX_TICKS")) max_ticks = v[1];
+        else if (!strcmp(key, "DELAY_MS")) delay_ms = v[1];
+        else if (!strcmp(key, "EMERGENCY_FUEL_TICKS")) emergency_fuel_ticks = v[1];
+        else if (!strcmp(key, "PRIORITY_WEIGHTS")) {
+            if (v[1] + v[2] + v[3] == 0) { bad = 1; break; }
+            for (int i = 0; i < 3; ++i) priority_weights[i] = v[i+1];
+        } else if (!strcmp(key, "ARRIVAL_FUEL") || !strcmp(key, "ARRIVAL_BURN")) {
+            if (v[1] > v[2] || (!strcmp(key, "ARRIVAL_BURN") && v[1] == 0)) { bad = 1; break; }
+            if (!strcmp(key, "ARRIVAL_FUEL")) { arrival_fuel_min = v[1]; arrival_fuel_max = v[2]; }
+            else { arrival_burn_min = v[1]; arrival_burn_max = v[2]; }
+        } else if (!strcmp(key, "RUNWAY")) {
+            if (runway_count == MAX_RUNWAYS || find_runway(tokens[1]) >= 0 || !v[2]) { bad = 1; break; }
+            Runway *r = &runways[runway_count++];
+            memset(r, 0, sizeof(*r));
+            strcpy(r->name, tokens[1]);
+            r->length = v[2];
+            r->safety = v[3];
+            r->plane_index = -1;
+        } else if (!strcmp(key, "TYPE")) {
+            if (type_count == MAX_TYPES || find_type(tokens[1]) >= 0 || !v[2] || !v[3] || !v[4]) { bad = 1; break; }
+            PlaneType *t = &types[type_count++];
+            strcpy(t->name, tokens[1]);
+            t->required_length = v[2];
+            t->landing_time = v[3];
+            t->takeoff_time = v[4];
+        } else if (!strcmp(key, "CLOSE")) {
+            int r = find_runway(tokens[1]);
+            if (closure_count == MAX_CLOSURES || r < 0 || v[2] >= v[3]) { bad = 1; break; }
+            closures[closure_count++] = (Closure){r, v[2], v[3]};
+        } else if (!strcmp(key, "FLOW")) {
+            int op = parse_operation(tokens[1]);
+            if (flow_count == MAX_FLOWS || op < 0 || v[2] > MAX_PLANES || v[4] > v[5]) { bad = 1; break; }
+            flows[flow_count++] = (Flow){op, v[2], v[3], v[4], v[5]};
+        } else if (!strcmp(key, "AIRCRAFT")) {
+            int op = parse_operation(tokens[2]), priority = parse_priority(tokens[7]);
+            if (number(tokens[3], &v[3]) || number(tokens[5], &v[5]) || number(tokens[6], &v[6]) ||
+                op < 0 || priority < 0 || (op == ARRIVAL && !v[6]) ||
+                add_plane(tokens[1], op, v[3], tokens[4], v[5], v[6], priority)) { bad = 1; break; }
+        }
+    }
+    if (ferror(file)) bad = 1;
+    if (fclose(file)) bad = 1;
+    if (bad) { fprintf(stderr, "%s:%d: invalid configuration\n", path, line_no); return -1; }
+    if (!runway_count || !type_count) {
+        fprintf(stderr, "Configuration requires RUNWAY and TYPE.\n"); return -1;
+    }
+    int total = plane_count;
+    for (int i = 0; i < flow_count; ++i) total += flows[i].count;
+    if (total > MAX_PLANES) { fprintf(stderr, "Too many aircraft (limit %d).\n", MAX_PLANES); return -1; }
+    return 0;
+}
 int generate_flows(void) {
     int f;
     int arrival_number = 0;

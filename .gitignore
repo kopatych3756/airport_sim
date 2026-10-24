@@ -1,5 +1,0 @@
-/build/
-/build-*/
-/logs/*.log
-/logs/tests/
-simulation.log

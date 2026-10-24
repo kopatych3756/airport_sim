@@ -1,44 +1,43 @@
-Проверка модульной версии проекта, вариант 31
-
-1. Сборка CMake:
-   cmake -S . -B build-test
-   cmake --build build-test
-   Результат: успешно, предупреждений компилятора нет.
-
-2. CTest:
-   6/6 tests passed.
-
-   nominal             — штатная работа нескольких ВПП;
-   emergency           — аварийный приоритет по топливу;
-   closure             — закрытие ВПП без прерывания начатой операции;
-   incompatible        — самолёт, которому не подходит имеющаяся ВПП;
-   safety              — соблюдение safety interval;
-   duplicate_aircraft  — отклонение повторяющегося номера самолёта.
-
-3. scripts/run_tests.sh:
-   All tests passed.
-
-   Дополнительно скрипт проверяет:
-   - COMPLETE при штатном завершении;
-   - SHIFT-END при окончании смены;
-   - STOP и termination=USER_INTERRUPT после SIGINT;
-   - код возврата 130 после SIGINT;
-   - сообщение Duplicate aircraft number: A001.
-
-4. Проверка памяти и неопределённого поведения:
-   gcc -std=c11 -Wall -Wextra -Wpedantic -fsanitize=address,undefined \
-       -Isrc src/main.c src/config.c src/io.c src/simulation.c -o airport_sim_asan
-
-   Пять основных тестовых конфигураций выполнены без сообщений ASan/UBSan.
-
-5. Основной сценарий, seed=31:
-   termination=ALL_REQUESTS_COMPLETED
-   elapsed_ticks=64
-   aircraft_total=30
-   landed=10
-   took_off=14
-   diverted=6
-   waiting=0
-   operating=0
-   pending=0
-   dispatcher=ATC assignments=24 emergency_assignments=1
+-- The C compiler identification is GNU 15.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Configuring done (1.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/kopat/acos/airport_runway_hw2/airport_runway_hw2/build-tests
+[  8%] Building C object CMakeFiles/airport_cond.dir/src/main.c.o
+[ 16%] Building C object CMakeFiles/airport_cond.dir/src/config.c.o
+[ 25%] Building C object CMakeFiles/airport_sem.dir/src/config.c.o
+[ 33%] Building C object CMakeFiles/airport_cond.dir/src/io.c.o
+[ 41%] Building C object CMakeFiles/airport_sem.dir/src/main.c.o
+[ 50%] Building C object CMakeFiles/airport_cond.dir/src/simulation.c.o
+[ 58%] Building C object CMakeFiles/airport_sem.dir/src/simulation.c.o
+[ 75%] Building C object CMakeFiles/airport_sem.dir/src/io.c.o
+[ 75%] Building C object CMakeFiles/airport_sem.dir/src/sync.c.o
+[ 83%] Building C object CMakeFiles/airport_cond.dir/src/sync.c.o
+[100%] Linking C executable airport_cond
+[100%] Linking C executable airport_sem
+[100%] Built target airport_sem
+[100%] Built target airport_cond
+PASS airport_sem: nominal
+PASS airport_sem: emergency
+PASS airport_sem: closure
+PASS airport_sem: incompatible
+PASS airport_sem: safety
+PASS airport_sem: duplicate rejected
+PASS airport_sem: SIGINT
+PASS airport_sem: SIGTERM
+PASS airport_cond: nominal
+PASS airport_cond: emergency
+PASS airport_cond: closure
+PASS airport_cond: incompatible
+PASS airport_cond: safety
+PASS airport_cond: duplicate rejected
+PASS airport_cond: SIGINT
+PASS airport_cond: SIGTERM
+All 16 runs passed.

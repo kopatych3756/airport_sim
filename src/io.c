@@ -8,6 +8,8 @@
 
 static int quiet_mode = 0;
 static int log_fd = -1;
+static int failed = 0;
+int io_failed(void) { return failed; }
 
 static void write_all(int fd, const char *text, size_t length) {
     while (length > 0) {
@@ -15,9 +17,11 @@ static void write_all(int fd, const char *text, size_t length) {
 
         if (written < 0) {
             if (errno == EINTR) continue;
+            failed = 1;
             return;
         }
 
+        if (written == 0) { failed = 1; return; }
         text += written;
         length -= (size_t)written;
     }
@@ -38,7 +42,7 @@ int open_log_file(const char *path) {
 
 void close_log_file(void) {
     if (log_fd >= 0) {
-        close(log_fd);
+        if (close(log_fd)) failed = 1;
         log_fd = -1;
     }
 }

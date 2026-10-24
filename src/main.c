@@ -1,5 +1,8 @@
+#define _POSIX_C_SOURCE 200809L
 #include "airport.h"
-
+#include <errno.h>
+#include <signal.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,8 +31,6 @@ int flow_count = 0;
 Dispatcher dispatcher = {"ATC", 0, 0};
 
 int current_tick = 0;
-int elapsed_ticks = 0;
-volatile sig_atomic_t stop_requested = 0;
 
 static void print_help(const char *program) {
     printf("Usage: %s [options]\n", program);
@@ -43,9 +44,17 @@ static void print_help(const char *program) {
     printf("  -h, --help          show help\n");
 }
 
-static void signal_handler(int signal_number) {
-    (void)signal_number;
-    stop_requested = 1;
+static int cli_number(const char *text, int *value) {
+    char *end;
+    long n;
+    errno = 0;
+    n = strtol(text, &end, 10);
+    if (errno || !*text || *end || n < 0 || n > 1000000) {
+        fprintf(stderr, "Invalid integer (expected 0..1000000): %s\n", text);
+        return -1;
+    }
+    *value = (int)n;
+    return 0;
 }
 
 int main(int argc, char **argv) {
@@ -54,12 +63,7 @@ int main(int argc, char **argv) {
     int logging_enabled = 1;
     int quiet = 0;
 
-    int seed_overridden = 0;
-    int ticks_overridden = 0;
-    int delay_overridden = 0;
-    unsigned int cli_seed = 0;
-    int cli_ticks = 0;
-    int cli_delay = 0;
+    int cli_seed = -1, cli_ticks = -1, cli_delay = -1;
 
     int i;
     const char *reason;
@@ -70,16 +74,13 @@ int main(int argc, char **argv) {
             config_path = argv[++i];
 
         } else if (strcmp(argv[i], "--seed") == 0 && i + 1 < argc) {
-            cli_seed = (unsigned int)strtoul(argv[++i], NULL, 10);
-            seed_overridden = 1;
+            if (cli_number(argv[++i], &cli_seed)) return 2;
 
         } else if (strcmp(argv[i], "--max-ticks") == 0 && i + 1 < argc) {
-            cli_ticks = atoi(argv[++i]);
-            ticks_overridden = 1;
+            if (cli_number(argv[++i], &cli_ticks)) return 2;
 
         } else if (strcmp(argv[i], "--delay-ms") == 0 && i + 1 < argc) {
-            cli_delay = atoi(argv[++i]);
-            delay_overridden = 1;
+            if (cli_number(argv[++i], &cli_delay)) return 2;
 
         } else if (strcmp(argv[i], "--log") == 0 && i + 1 < argc) {
             log_path = argv[++i];
@@ -103,9 +104,9 @@ int main(int argc, char **argv) {
 
     if (load_config(config_path) != 0) return 2;
 
-    if (seed_overridden) seed_value = cli_seed;
-    if (ticks_overridden) max_ticks = cli_ticks;
-    if (delay_overridden) delay_ms = cli_delay;
+    if (cli_seed >= 0) seed_value = (unsigned int)cli_seed;
+    if (cli_ticks >= 0) max_ticks = cli_ticks;
+    if (cli_delay >= 0) delay_ms = cli_delay;
 
     srand(seed_value);
     if (generate_flows() != 0) return 2;
@@ -113,8 +114,12 @@ int main(int argc, char **argv) {
     set_quiet_mode(quiet);
     if (logging_enabled && open_log_file(log_path) != 0) return 2;
 
-    signal(SIGINT, signal_handler);
-    signal(SIGTERM, signal_handler);
+    sigset_t signals;
+    sigemptyset(&signals);
+    sigaddset(&signals, SIGINT);
+    sigaddset(&signals, SIGTERM);
+    if (pthread_sigmask(SIG_BLOCK, &signals, NULL)) return 3;
+    signal(SIGPIPE, SIG_IGN);
 
     print_line("=== AIRPORT RUNWAY SIMULATION / VARIANT 31 ===");
     print_line("seed=%u max_ticks=%d delay_ms=%d", seed_value, max_ticks, delay_ms);
@@ -130,7 +135,10 @@ int main(int argc, char **argv) {
 
     close_log_file();
 
-    if (strcmp(reason, "INVARIANT_FAILURE") == 0) return 3;
+    if (io_failed()) return 4;
+    if (strcmp(reason, "INVARIANT_FAILURE") == 0 ||
+        strcmp(reason, "THREAD_FAILURE") == 0 ||
+        strcmp(reason, "TIME_LIMIT") == 0) return 3;
     if (strcmp(reason, "USER_INTERRUPT") == 0) return 130;
     return 0;
 }
