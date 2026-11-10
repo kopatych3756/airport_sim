@@ -1,0 +1,55 @@
+PASS named test_nominal.conf independent=False
+PASS named test_emergency.conf independent=False
+PASS named test_incompatible.conf independent=False
+PASS named test_closure.conf independent=False
+PASS named test_safety.conf independent=False
+PASS named test_empty.conf independent=False
+PASS named test_zero_fuel.conf independent=False
+PASS named test_duplicate.conf independent=False
+PASS named SIGINT cleanup
+PASS named default random flow
+PASS unnamed test_nominal.conf independent=False
+PASS unnamed test_emergency.conf independent=False
+PASS unnamed test_incompatible.conf independent=False
+PASS unnamed test_closure.conf independent=False
+PASS unnamed test_safety.conf independent=False
+PASS unnamed test_empty.conf independent=False
+PASS unnamed test_zero_fuel.conf independent=False
+PASS unnamed test_duplicate.conf independent=False
+PASS unnamed SIGINT cleanup
+PASS unnamed default random flow
+PASS shm test_nominal.conf independent=True
+PASS shm test_emergency.conf independent=True
+PASS shm test_incompatible.conf independent=True
+PASS shm test_closure.conf independent=True
+PASS shm test_safety.conf independent=True
+PASS shm test_empty.conf independent=True
+PASS shm test_zero_fuel.conf independent=True
+PASS shm test_duplicate.conf independent=True
+PASS shm SIGINT cleanup
+PASS shm default random flow
+PASS fifo test_nominal.conf independent=True
+PASS fifo test_emergency.conf independent=True
+PASS fifo test_incompatible.conf independent=True
+PASS fifo test_closure.conf independent=True
+PASS fifo test_safety.conf independent=True
+PASS fifo test_empty.conf independent=True
+PASS fifo test_zero_fuel.conf independent=True
+PASS fifo test_duplicate.conf independent=True
+PASS fifo SIGINT cleanup
+PASS fifo default random flow
+PASS shm killed worker -> IPC_FAILURE cleanup
+PASS fifo killed worker -> IPC_FAILURE cleanup
+PASS identical seed -> identical event streams in all four modes
+PASS named SIGTERM cleanup
+PASS unnamed SIGTERM cleanup
+PASS shm SIGTERM cleanup
+PASS fifo SIGTERM cleanup
+PASS named terminal process-group Ctrl+C
+PASS unnamed terminal process-group Ctrl+C
+PASS SIGINT while waiting for independent actors
+PASS shm independent launcher interrupt=False
+PASS shm independent launcher interrupt=True
+PASS fifo independent launcher interrupt=False
+PASS fifo independent launcher interrupt=True
+54 tests passed
