@@ -1,0 +1,46 @@
+=== AIRPORT RUNWAY SIMULATION / VARIANT 31 ===
+seed=1 max_ticks=40 delay_ms=0
+runways=2 aircraft=4 types=3 closures=0
+dispatcher=ATC
+Priority: emergency -> HIGH/NORMAL/LOW -> earlier request.
+
+backend=fifo actors=7 session=demo5279 airport_bytes=59356
+READY session=demo5279 actors=7 plane_ids=0..3 runway_ids=4..5 dispatcher_id=6
+Start each actor separately: ./build/airport --worker fifo demo5279 ID
+[T=0000] [REQUEST  ] A001 requests LANDING type=A320 required=1800 priority=1 fuel=20 burn=1 scheduled=0
+[T=0000] [QUEUE    ] A001 entered waiting queue
+[T=0000] [REQUEST  ] D001 requests TAKEOFF type=B77W required=3000 priority=2 fuel=0 burn=0 scheduled=0
+[T=0000] [QUEUE    ] D001 entered waiting queue
+[T=0000] [ASSIGN   ] ATC assigned D001 to R-LONG
+[T=0000] [ASSIGN   ] ATC assigned A001 to R-SHORT
+[T=0000] [START    ] D001 started TAKEOFF on R-LONG; finish at T=4
+[T=0000] [START    ] A001 started LANDING on R-SHORT; finish at T=3
+[T=0001] [REQUEST  ] A002 requests LANDING type=B77W required=3000 priority=1 fuel=18 burn=1 scheduled=1
+[T=0001] [QUEUE    ] A002 entered waiting queue
+[T=0002] [FUEL     ] A002 fuel: 18 -> 17
+[T=0002] [REQUEST  ] D002 requests TAKEOFF type=E190 required=1500 priority=2 fuel=0 burn=0 scheduled=2
+[T=0002] [QUEUE    ] D002 entered waiting queue
+[T=0003] [FUEL     ] A002 fuel: 17 -> 16
+[T=0003] [FINISH   ] A001 completed LANDING on R-SHORT
+[T=0003] [RELEASE  ] R-SHORT released; next start not before T=4
+[T=0004] [FUEL     ] A002 fuel: 16 -> 15
+[T=0004] [FINISH   ] D001 completed TAKEOFF on R-LONG
+[T=0004] [RELEASE  ] R-LONG released; next start not before T=5
+[T=0004] [ASSIGN   ] ATC assigned D002 to R-SHORT
+[T=0004] [START    ] D002 started TAKEOFF on R-SHORT; finish at T=6
+[T=0005] [FUEL     ] A002 fuel: 15 -> 14
+[T=0005] [ASSIGN   ] ATC assigned A002 to R-LONG
+[T=0005] [START    ] A002 started LANDING on R-LONG; finish at T=9
+[T=0006] [FINISH   ] D002 completed TAKEOFF on R-SHORT
+[T=0006] [RELEASE  ] R-SHORT released; next start not before T=7
+[T=0009] [FINISH   ] A002 completed LANDING on R-LONG
+[T=0009] [RELEASE  ] R-LONG released; next start not before T=10
+IPC_CLEANUP actors=7 children_reaped=0
+[T=0009] [COMPLETE ] all aircraft requests have a final outcome
+
+=== SUMMARY ===
+termination=ALL_REQUESTS_COMPLETED, last_tick=9
+aircraft_total=4, landed=2, took_off=2, diverted=0, waiting=0, operating=0, pending=0
+dispatcher=ATC assignments=4 emergency_assignments=0
+runway=R-LONG completed_operations=2
+runway=R-SHORT completed_operations=2
