@@ -1,0 +1,16 @@
+PASS ordinary traffic, local views and audit log
+PASS emergency aircraft before high-priority departure
+PASS incompatible runway, diversion and shift limit
+PASS closed runway preserves an active operation
+PASS safety interval
+PASS empty shift
+PASS arrival with zero reserve
+PASS dynamic observers and administrative OFF/ON for all three roles
+PASS server SIGINT closes every attached client
+PASS server SIGTERM closes every attached client
+PASS SIGINT during registration
+PASS IPv6, control token, registration and TCP frame boundaries
+PASS automatic start and rejection of a duplicate aircraft number
+PASS slow observer isolated while 300 aircraft progress
+PASS seed replay and equivalence with the HW3 model
+15 TCP checks passed

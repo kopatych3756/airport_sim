@@ -1,0 +1,21 @@
+READY bind=127.0.0.1 port=35439 aircraft=4 runways=2 startup_ms=20000
+CONNECTED role=RUNWAY name=R-LONG
+[T=0000] [NETWORK  ] runway=R-LONG ready=1
+CONNECTED role=RUNWAY name=R-SHORT
+[T=0000] [NETWORK  ] runway=R-SHORT ready=1
+CONNECTED role=AIRCRAFT name=A001
+[T=0000] [NETWORK  ] aircraft=A001 request=accepted
+CONNECTED role=AIRCRAFT name=D001
+[T=0000] [NETWORK  ] aircraft=D001 request=accepted
+CONNECTED role=AIRCRAFT name=A002
+[T=0000] [NETWORK  ] aircraft=A002 request=accepted
+CONNECTED role=AIRCRAFT name=D002
+[T=0000] [NETWORK  ] aircraft=D002 request=accepted
+CONNECTED role=WATCH name=tower
+[T=0000] [SHIFT    ] simulation started; seed=1
+[T=0000] [ASSIGN   ] ATC assigned D001 to R-LONG
+[T=0000] [ASSIGN   ] ATC assigned A001 to R-SHORT
+[T=0004] [ASSIGN   ] ATC assigned D002 to R-SHORT
+[T=0005] [ASSIGN   ] ATC assigned A002 to R-LONG
+[T=0009] [COMPLETE ] all aircraft requests have a final outcome
+SERVER_END reason=ALL_REQUESTS_COMPLETED tick=9

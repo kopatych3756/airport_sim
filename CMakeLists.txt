@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.16)
+project(airport_runway_hw4 C)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+
+add_library(airport_model OBJECT src/config.c src/io.c src/model.c src/tick.c)
+add_library(airport_ipc OBJECT src/simulation.c src/ipc.c)
+foreach (mode named unnamed shm fifo)
+    add_executable(airport_${mode} src/main.c $<TARGET_OBJECTS:airport_model> $<TARGET_OBJECTS:airport_ipc>)
+    target_compile_definitions(airport_${mode} PRIVATE DEFAULT_MODE="${mode}")
+    target_link_libraries(airport_${mode} PRIVATE pthread rt)
+endforeach ()
+add_executable(airport src/main.c $<TARGET_OBJECTS:airport_model> $<TARGET_OBJECTS:airport_ipc>)
+target_link_libraries(airport PRIVATE pthread rt)
+
+add_library(airport_tcp OBJECT src/net.c)
+add_executable(airport_server src/net_server.c $<TARGET_OBJECTS:airport_model> $<TARGET_OBJECTS:airport_tcp>)
+function(add_tcp_client name role)
+    add_executable(airport_${name} src/net_client.c $<TARGET_OBJECTS:airport_tcp>)
+    target_compile_definitions(airport_${name} PRIVATE CLIENT_ROLE=${role})
+endfunction()
+add_tcp_client(aircraft AIRCRAFT)
+add_tcp_client(runway RUNWAY)
+add_tcp_client(watch WATCH)
+add_tcp_client(ctl CONTROL)
+
+enable_testing()
+find_package(Python3 COMPONENTS Interpreter)
+if (Python3_FOUND)
+    add_test(NAME integration
+             COMMAND ${CMAKE_COMMAND} -E env AIRPORT_BIN_DIR=$<TARGET_FILE_DIR:airport>
+                     ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/run_tests.py)
+    set_tests_properties(integration PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} TIMEOUT 180)
+    add_test(NAME tcp_integration
+             COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_tcp.py --bin-dir $<TARGET_FILE_DIR:airport_server>)
+    set_tests_properties(tcp_integration PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} TIMEOUT 100)
+endif ()

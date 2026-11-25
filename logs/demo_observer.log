@@ -1,0 +1,326 @@
+READY bind=127.0.0.1 port=42889 aircraft=30 runways=3 startup_ms=30000
+WELCOME WATCH demo
+SNAPSHOT BEGIN seq=33 tick=0 phase=REGISTERING
+AIRPORT seed=31 max_ticks=120 delay_ms=0 emergency_fuel_ticks=3 runways=3 aircraft=30
+DISPATCHER ATC assignments=0 emergency_assignments=0
+RUNWAY RWY-A length=3400 safety=2 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+RUNWAY RWY-B length=2500 safety=1 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+RUNWAY RWY-C length=1900 safety=1 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+AIRCRAFT GA001 operation=ARRIVAL type=A320 required=1800 scheduled=0 duration=3 priority=2 emergency=0 state=PENDING fuel=19 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA002 operation=ARRIVAL type=B77W required=3100 scheduled=4 duration=5 priority=1 emergency=0 state=PENDING fuel=15 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA003 operation=ARRIVAL type=A320 required=1800 scheduled=5 duration=3 priority=1 emergency=0 state=PENDING fuel=18 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA004 operation=ARRIVAL type=A320 required=1800 scheduled=7 duration=3 priority=2 emergency=0 state=PENDING fuel=21 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA005 operation=ARRIVAL type=B738 required=2000 scheduled=9 duration=3 priority=1 emergency=0 state=PENDING fuel=12 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA006 operation=ARRIVAL type=A320 required=1800 scheduled=10 duration=3 priority=1 emergency=0 state=PENDING fuel=18 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA007 operation=ARRIVAL type=B77W required=3100 scheduled=13 duration=5 priority=1 emergency=0 state=PENDING fuel=18 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA008 operation=ARRIVAL type=B738 required=2000 scheduled=15 duration=3 priority=1 emergency=0 state=PENDING fuel=12 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA009 operation=ARRIVAL type=A330 required=2700 scheduled=16 duration=4 priority=1 emergency=0 state=PENDING fuel=13 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA010 operation=ARRIVAL type=B77W required=3100 scheduled=17 duration=5 priority=1 emergency=0 state=PENDING fuel=20 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA011 operation=ARRIVAL type=B738 required=2000 scheduled=20 duration=3 priority=1 emergency=0 state=PENDING fuel=19 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA012 operation=ARRIVAL type=A330 required=2700 scheduled=24 duration=4 priority=1 emergency=0 state=PENDING fuel=22 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA013 operation=ARRIVAL type=B77W required=3100 scheduled=25 duration=5 priority=0 emergency=0 state=PENDING fuel=9 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA014 operation=ARRIVAL type=B77W required=3100 scheduled=27 duration=5 priority=2 emergency=0 state=PENDING fuel=10 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA015 operation=ARRIVAL type=B738 required=2000 scheduled=29 duration=3 priority=1 emergency=0 state=PENDING fuel=14 burn=2 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GA016 operation=ARRIVAL type=B77W required=3100 scheduled=32 duration=5 priority=2 emergency=0 state=PENDING fuel=10 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD001 operation=DEPARTURE type=B77W required=3100 scheduled=0 duration=5 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD002 operation=DEPARTURE type=E190 required=1500 scheduled=1 duration=2 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD003 operation=DEPARTURE type=A320 required=1800 scheduled=3 duration=3 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD004 operation=DEPARTURE type=E190 required=1500 scheduled=6 duration=2 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD005 operation=DEPARTURE type=E190 required=1500 scheduled=11 duration=2 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD006 operation=DEPARTURE type=B738 required=2000 scheduled=16 duration=3 priority=0 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD007 operation=DEPARTURE type=B77W required=3100 scheduled=17 duration=5 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD008 operation=DEPARTURE type=A330 required=2700 scheduled=18 duration=4 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD009 operation=DEPARTURE type=B738 required=2000 scheduled=22 duration=3 priority=0 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD010 operation=DEPARTURE type=B77W required=3100 scheduled=26 duration=5 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD011 operation=DEPARTURE type=B77W required=3100 scheduled=27 duration=5 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD012 operation=DEPARTURE type=A320 required=1800 scheduled=28 duration=3 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD013 operation=DEPARTURE type=B738 required=2000 scheduled=29 duration=3 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT GD014 operation=DEPARTURE type=B738 required=2000 scheduled=33 duration=3 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+SNAPSHOT END seq=33
+EVENT 34 [T=0000] [SHIFT    ] simulation started; seed=31
+EVENT 35 [T=0000] [REQUEST  ] GA001 requests LANDING type=A320 required=1800 priority=2 fuel=19 burn=2 scheduled=0
+EVENT 36 [T=0000] [QUEUE    ] GA001 entered waiting queue
+EVENT 37 [T=0000] [REQUEST  ] GD001 requests TAKEOFF type=B77W required=3100 priority=2 fuel=0 burn=0 scheduled=0
+EVENT 38 [T=0000] [QUEUE    ] GD001 entered waiting queue
+EVENT 39 [T=0000] [ASSIGN   ] ATC assigned GA001 to RWY-C
+EVENT 40 [T=0000] [ASSIGN   ] ATC assigned GD001 to RWY-A
+EVENT 41 [T=0000] [START    ] GD001 started TAKEOFF on RWY-A; finish at T=5
+EVENT 42 [T=0000] [START    ] GA001 started LANDING on RWY-C; finish at T=3
+EVENT 43 [T=0001] [REQUEST  ] GD002 requests TAKEOFF type=E190 required=1500 priority=2 fuel=0 burn=0 scheduled=1
+EVENT 44 [T=0001] [QUEUE    ] GD002 entered waiting queue
+EVENT 45 [T=0001] [ASSIGN   ] ATC assigned GD002 to RWY-B
+EVENT 46 [T=0001] [START    ] GD002 started TAKEOFF on RWY-B; finish at T=3
+EVENT 47 [T=0003] [REQUEST  ] GD003 requests TAKEOFF type=A320 required=1800 priority=1 fuel=0 burn=0 scheduled=3
+EVENT 48 [T=0003] [QUEUE    ] GD003 entered waiting queue
+EVENT 49 [T=0003] [FINISH   ] GD002 completed TAKEOFF on RWY-B
+EVENT 50 [T=0003] [RELEASE  ] RWY-B released; next start not before T=4
+EVENT 51 [T=0003] [FINISH   ] GA001 completed LANDING on RWY-C
+EVENT 52 [T=0003] [RELEASE  ] RWY-C released; next start not before T=4
+EVENT 53 [T=0004] [REQUEST  ] GA002 requests LANDING type=B77W required=3100 priority=1 fuel=15 burn=1 scheduled=4
+EVENT 54 [T=0004] [QUEUE    ] GA002 entered waiting queue
+EVENT 55 [T=0004] [ASSIGN   ] ATC assigned GD003 to RWY-C
+EVENT 56 [T=0004] [START    ] GD003 started TAKEOFF on RWY-C; finish at T=7
+EVENT 57 [T=0005] [FUEL     ] GA002 fuel: 15 -> 14
+EVENT 58 [T=0005] [REQUEST  ] GA003 requests LANDING type=A320 required=1800 priority=1 fuel=18 burn=1 scheduled=5
+EVENT 59 [T=0005] [QUEUE    ] GA003 entered waiting queue
+EVENT 60 [T=0005] [FINISH   ] GD001 completed TAKEOFF on RWY-A
+EVENT 61 [T=0005] [RELEASE  ] RWY-A released; next start not before T=7
+EVENT 62 [T=0005] [ASSIGN   ] ATC assigned GA003 to RWY-B
+EVENT 63 [T=0005] [START    ] GA003 started LANDING on RWY-B; finish at T=8
+EVENT 64 [T=0006] [FUEL     ] GA002 fuel: 14 -> 13
+EVENT 65 [T=0006] [REQUEST  ] GD004 requests TAKEOFF type=E190 required=1500 priority=1 fuel=0 burn=0 scheduled=6
+EVENT 66 [T=0006] [QUEUE    ] GD004 entered waiting queue
+EVENT 67 [T=0007] [FUEL     ] GA002 fuel: 13 -> 12
+EVENT 68 [T=0007] [REQUEST  ] GA004 requests LANDING type=A320 required=1800 priority=2 fuel=21 burn=1 scheduled=7
+EVENT 69 [T=0007] [QUEUE    ] GA004 entered waiting queue
+EVENT 70 [T=0007] [FINISH   ] GD003 completed TAKEOFF on RWY-C
+EVENT 71 [T=0007] [RELEASE  ] RWY-C released; next start not before T=8
+EVENT 72 [T=0007] [ASSIGN   ] ATC assigned GA004 to RWY-A
+EVENT 73 [T=0007] [START    ] GA004 started LANDING on RWY-A; finish at T=10
+EVENT 74 [T=0008] [FUEL     ] GA002 fuel: 12 -> 11
+EVENT 75 [T=0008] [FINISH   ] GA003 completed LANDING on RWY-B
+EVENT 76 [T=0008] [RELEASE  ] RWY-B released; next start not before T=9
+EVENT 77 [T=0008] [ASSIGN   ] ATC assigned GD004 to RWY-C
+EVENT 78 [T=0008] [START    ] GD004 started TAKEOFF on RWY-C; finish at T=10
+EVENT 79 [T=0009] [FUEL     ] GA002 fuel: 11 -> 10
+EVENT 80 [T=0009] [REQUEST  ] GA005 requests LANDING type=B738 required=2000 priority=1 fuel=12 burn=1 scheduled=9
+EVENT 81 [T=0009] [QUEUE    ] GA005 entered waiting queue
+EVENT 82 [T=0009] [ASSIGN   ] ATC assigned GA005 to RWY-B
+EVENT 83 [T=0009] [START    ] GA005 started LANDING on RWY-B; finish at T=12
+EVENT 84 [T=0010] [FUEL     ] GA002 fuel: 10 -> 9
+EVENT 85 [T=0010] [REQUEST  ] GA006 requests LANDING type=A320 required=1800 priority=1 fuel=18 burn=2 scheduled=10
+EVENT 86 [T=0010] [QUEUE    ] GA006 entered waiting queue
+EVENT 87 [T=0010] [FINISH   ] GA004 completed LANDING on RWY-A
+EVENT 88 [T=0010] [RELEASE  ] RWY-A released; next start not before T=12
+EVENT 89 [T=0010] [FINISH   ] GD004 completed TAKEOFF on RWY-C
+EVENT 90 [T=0010] [RELEASE  ] RWY-C released; next start not before T=11
+EVENT 91 [T=0011] [FUEL     ] GA002 fuel: 9 -> 8
+EVENT 92 [T=0011] [FUEL     ] GA006 fuel: 18 -> 16
+EVENT 93 [T=0011] [REQUEST  ] GD005 requests TAKEOFF type=E190 required=1500 priority=1 fuel=0 burn=0 scheduled=11
+EVENT 94 [T=0011] [QUEUE    ] GD005 entered waiting queue
+EVENT 95 [T=0011] [ASSIGN   ] ATC assigned GA006 to RWY-C
+EVENT 96 [T=0011] [START    ] GA006 started LANDING on RWY-C; finish at T=14
+EVENT 97 [T=0012] [FUEL     ] GA002 fuel: 8 -> 7
+EVENT 98 [T=0012] [FINISH   ] GA005 completed LANDING on RWY-B
+EVENT 99 [T=0012] [RELEASE  ] RWY-B released; next start not before T=13
+EVENT 100 [T=0012] [ASSIGN   ] ATC assigned GA002 to RWY-A
+EVENT 101 [T=0012] [START    ] GA002 started LANDING on RWY-A; finish at T=17
+EVENT 102 [T=0013] [REQUEST  ] GA007 requests LANDING type=B77W required=3100 priority=1 fuel=18 burn=1 scheduled=13
+EVENT 103 [T=0013] [QUEUE    ] GA007 entered waiting queue
+EVENT 104 [T=0013] [ASSIGN   ] ATC assigned GD005 to RWY-B
+EVENT 105 [T=0013] [START    ] GD005 started TAKEOFF on RWY-B; finish at T=15
+EVENT 106 [T=0014] [FUEL     ] GA007 fuel: 18 -> 17
+EVENT 107 [T=0014] [FINISH   ] GA006 completed LANDING on RWY-C
+EVENT 108 [T=0014] [RELEASE  ] RWY-C released; next start not before T=15
+EVENT 109 [T=0015] [FUEL     ] GA007 fuel: 17 -> 16
+EVENT 110 [T=0015] [REQUEST  ] GA008 requests LANDING type=B738 required=2000 priority=1 fuel=12 burn=2 scheduled=15
+EVENT 111 [T=0015] [QUEUE    ] GA008 entered waiting queue
+EVENT 112 [T=0015] [FINISH   ] GD005 completed TAKEOFF on RWY-B
+EVENT 113 [T=0015] [RELEASE  ] RWY-B released; next start not before T=16
+EVENT 114 [T=0016] [FUEL     ] GA007 fuel: 16 -> 15
+EVENT 115 [T=0016] [FUEL     ] GA008 fuel: 12 -> 10
+EVENT 116 [T=0016] [REQUEST  ] GA009 requests LANDING type=A330 required=2700 priority=1 fuel=13 burn=2 scheduled=16
+EVENT 117 [T=0016] [QUEUE    ] GA009 entered waiting queue
+EVENT 118 [T=0016] [REQUEST  ] GD006 requests TAKEOFF type=B738 required=2000 priority=0 fuel=0 burn=0 scheduled=16
+EVENT 119 [T=0016] [QUEUE    ] GD006 entered waiting queue
+EVENT 120 [T=0016] [ASSIGN   ] ATC assigned GA008 to RWY-B
+EVENT 121 [T=0016] [START    ] GA008 started LANDING on RWY-B; finish at T=19
+EVENT 122 [T=0017] [FUEL     ] GA007 fuel: 15 -> 14
+EVENT 123 [T=0017] [FUEL     ] GA009 fuel: 13 -> 11
+EVENT 124 [T=0017] [REQUEST  ] GA010 requests LANDING type=B77W required=3100 priority=1 fuel=20 burn=1 scheduled=17
+EVENT 125 [T=0017] [QUEUE    ] GA010 entered waiting queue
+EVENT 126 [T=0017] [REQUEST  ] GD007 requests TAKEOFF type=B77W required=3100 priority=2 fuel=0 burn=0 scheduled=17
+EVENT 127 [T=0017] [QUEUE    ] GD007 entered waiting queue
+EVENT 128 [T=0017] [FINISH   ] GA002 completed LANDING on RWY-A
+EVENT 129 [T=0017] [RELEASE  ] RWY-A released; next start not before T=19
+EVENT 130 [T=0018] [FUEL     ] GA007 fuel: 14 -> 13
+EVENT 131 [T=0018] [FUEL     ] GA009 fuel: 11 -> 9
+EVENT 132 [T=0018] [FUEL     ] GA010 fuel: 20 -> 19
+EVENT 133 [T=0018] [REQUEST  ] GD008 requests TAKEOFF type=A330 required=2700 priority=2 fuel=0 burn=0 scheduled=18
+EVENT 134 [T=0018] [QUEUE    ] GD008 entered waiting queue
+EVENT 135 [T=0019] [FUEL     ] GA007 fuel: 13 -> 12
+EVENT 136 [T=0019] [FUEL     ] GA009 fuel: 9 -> 7
+EVENT 137 [T=0019] [FUEL     ] GA010 fuel: 19 -> 18
+EVENT 138 [T=0019] [FINISH   ] GA008 completed LANDING on RWY-B
+EVENT 139 [T=0019] [RELEASE  ] RWY-B released; next start not before T=20
+EVENT 140 [T=0019] [ASSIGN   ] ATC assigned GD007 to RWY-A
+EVENT 141 [T=0019] [START    ] GD007 started TAKEOFF on RWY-A; finish at T=24
+EVENT 142 [T=0020] [FUEL     ] GA007 fuel: 12 -> 11
+EVENT 143 [T=0020] [FUEL     ] GA009 fuel: 7 -> 5
+EVENT 144 [T=0020] [EMERGENCY] GA009 has critical fuel=5; emergency priority enabled
+EVENT 145 [T=0020] [FUEL     ] GA010 fuel: 18 -> 17
+EVENT 146 [T=0020] [REQUEST  ] GA011 requests LANDING type=B738 required=2000 priority=1 fuel=19 burn=2 scheduled=20
+EVENT 147 [T=0020] [QUEUE    ] GA011 entered waiting queue
+EVENT 148 [T=0020] [ASSIGN   ] ATC assigned GA011 to RWY-B
+EVENT 149 [T=0020] [START    ] GA011 started LANDING on RWY-B; finish at T=23
+EVENT 150 [T=0021] [FUEL     ] GA007 fuel: 11 -> 10
+EVENT 151 [T=0021] [FUEL     ] GA009 fuel: 5 -> 3
+EVENT 152 [T=0021] [FUEL     ] GA010 fuel: 17 -> 16
+EVENT 153 [T=0022] [FUEL     ] GA007 fuel: 10 -> 9
+EVENT 154 [T=0022] [FUEL     ] GA009 fuel: 3 -> 1
+EVENT 155 [T=0022] [FUEL     ] GA010 fuel: 16 -> 15
+EVENT 156 [T=0022] [REQUEST  ] GD009 requests TAKEOFF type=B738 required=2000 priority=0 fuel=0 burn=0 scheduled=22
+EVENT 157 [T=0022] [QUEUE    ] GD009 entered waiting queue
+EVENT 158 [T=0023] [FUEL     ] GA007 fuel: 9 -> 8
+EVENT 159 [T=0023] [FUEL     ] GA009 fuel: 1 -> 0
+EVENT 160 [T=0023] [DIVERT   ] GA009 left for alternate airport; model fuel reserve exhausted
+EVENT 161 [T=0023] [FUEL     ] GA010 fuel: 15 -> 14
+EVENT 162 [T=0023] [FINISH   ] GA011 completed LANDING on RWY-B
+EVENT 163 [T=0023] [RELEASE  ] RWY-B released; next start not before T=24
+EVENT 164 [T=0024] [FUEL     ] GA007 fuel: 8 -> 7
+EVENT 165 [T=0024] [FUEL     ] GA010 fuel: 14 -> 13
+EVENT 166 [T=0024] [REQUEST  ] GA012 requests LANDING type=A330 required=2700 priority=1 fuel=22 burn=1 scheduled=24
+EVENT 167 [T=0024] [QUEUE    ] GA012 entered waiting queue
+EVENT 168 [T=0024] [FINISH   ] GD007 completed TAKEOFF on RWY-A
+EVENT 169 [T=0024] [RELEASE  ] RWY-A released; next start not before T=26
+EVENT 170 [T=0024] [ASSIGN   ] ATC assigned GD006 to RWY-B
+EVENT 171 [T=0024] [START    ] GD006 started TAKEOFF on RWY-B; finish at T=27
+EVENT 172 [T=0025] [FUEL     ] GA007 fuel: 7 -> 6
+EVENT 173 [T=0025] [FUEL     ] GA010 fuel: 13 -> 12
+EVENT 174 [T=0025] [FUEL     ] GA012 fuel: 22 -> 21
+EVENT 175 [T=0025] [REQUEST  ] GA013 requests LANDING type=B77W required=3100 priority=0 fuel=9 burn=2 scheduled=25
+EVENT 176 [T=0025] [QUEUE    ] GA013 entered waiting queue
+EVENT 177 [T=0026] [FUEL     ] GA007 fuel: 6 -> 5
+EVENT 178 [T=0026] [FUEL     ] GA010 fuel: 12 -> 11
+EVENT 179 [T=0026] [FUEL     ] GA012 fuel: 21 -> 20
+EVENT 180 [T=0026] [FUEL     ] GA013 fuel: 9 -> 7
+EVENT 181 [T=0026] [REQUEST  ] GD010 requests TAKEOFF type=B77W required=3100 priority=1 fuel=0 burn=0 scheduled=26
+EVENT 182 [T=0026] [QUEUE    ] GD010 entered waiting queue
+EVENT 183 [T=0026] [ASSIGN   ] ATC assigned GD008 to RWY-A
+EVENT 184 [T=0026] [START    ] GD008 started TAKEOFF on RWY-A; finish at T=30
+EVENT 185 [T=0027] [FUEL     ] GA007 fuel: 5 -> 4
+EVENT 186 [T=0027] [FUEL     ] GA010 fuel: 11 -> 10
+EVENT 187 [T=0027] [FUEL     ] GA012 fuel: 20 -> 19
+EVENT 188 [T=0027] [FUEL     ] GA013 fuel: 7 -> 5
+EVENT 189 [T=0027] [EMERGENCY] GA013 has critical fuel=5; emergency priority enabled
+EVENT 190 [T=0027] [REQUEST  ] GA014 requests LANDING type=B77W required=3100 priority=2 fuel=10 burn=1 scheduled=27
+EVENT 191 [T=0027] [QUEUE    ] GA014 entered waiting queue
+EVENT 192 [T=0027] [REQUEST  ] GD011 requests TAKEOFF type=B77W required=3100 priority=1 fuel=0 burn=0 scheduled=27
+EVENT 193 [T=0027] [QUEUE    ] GD011 entered waiting queue
+EVENT 194 [T=0027] [FINISH   ] GD006 completed TAKEOFF on RWY-B
+EVENT 195 [T=0027] [RELEASE  ] RWY-B released; next start not before T=28
+EVENT 196 [T=0028] [FUEL     ] GA007 fuel: 4 -> 3
+EVENT 197 [T=0028] [EMERGENCY] GA007 has critical fuel=3; emergency priority enabled
+EVENT 198 [T=0028] [FUEL     ] GA010 fuel: 10 -> 9
+EVENT 199 [T=0028] [FUEL     ] GA012 fuel: 19 -> 18
+EVENT 200 [T=0028] [FUEL     ] GA013 fuel: 5 -> 3
+EVENT 201 [T=0028] [FUEL     ] GA014 fuel: 10 -> 9
+EVENT 202 [T=0028] [REQUEST  ] GD012 requests TAKEOFF type=A320 required=1800 priority=1 fuel=0 burn=0 scheduled=28
+EVENT 203 [T=0028] [QUEUE    ] GD012 entered waiting queue
+EVENT 204 [T=0028] [CLOSE    ] RWY-A closed for new operations; active operation continues; scheduled=28
+EVENT 205 [T=0028] [ASSIGN   ] ATC assigned GD012 to RWY-C
+EVENT 206 [T=0028] [ASSIGN   ] ATC assigned GD009 to RWY-B
+EVENT 207 [T=0028] [START    ] GD009 started TAKEOFF on RWY-B; finish at T=31
+EVENT 208 [T=0028] [START    ] GD012 started TAKEOFF on RWY-C; finish at T=31
+EVENT 209 [T=0029] [FUEL     ] GA007 fuel: 3 -> 2
+EVENT 210 [T=0029] [FUEL     ] GA010 fuel: 9 -> 8
+EVENT 211 [T=0029] [FUEL     ] GA012 fuel: 18 -> 17
+EVENT 212 [T=0029] [FUEL     ] GA013 fuel: 3 -> 1
+EVENT 213 [T=0029] [FUEL     ] GA014 fuel: 9 -> 8
+EVENT 214 [T=0029] [REQUEST  ] GA015 requests LANDING type=B738 required=2000 priority=1 fuel=14 burn=2 scheduled=29
+EVENT 215 [T=0029] [QUEUE    ] GA015 entered waiting queue
+EVENT 216 [T=0029] [REQUEST  ] GD013 requests TAKEOFF type=B738 required=2000 priority=2 fuel=0 burn=0 scheduled=29
+EVENT 217 [T=0029] [QUEUE    ] GD013 entered waiting queue
+EVENT 218 [T=0030] [FUEL     ] GA007 fuel: 2 -> 1
+EVENT 219 [T=0030] [FUEL     ] GA010 fuel: 8 -> 7
+EVENT 220 [T=0030] [FUEL     ] GA012 fuel: 17 -> 16
+EVENT 221 [T=0030] [FUEL     ] GA013 fuel: 1 -> 0
+EVENT 222 [T=0030] [DIVERT   ] GA013 left for alternate airport; model fuel reserve exhausted
+EVENT 223 [T=0030] [FUEL     ] GA014 fuel: 8 -> 7
+EVENT 224 [T=0030] [FUEL     ] GA015 fuel: 14 -> 12
+EVENT 225 [T=0030] [FINISH   ] GD008 completed TAKEOFF on RWY-A
+EVENT 226 [T=0030] [RELEASE  ] RWY-A released; next start not before T=32
+EVENT 227 [T=0031] [FUEL     ] GA007 fuel: 1 -> 0
+EVENT 228 [T=0031] [DIVERT   ] GA007 left for alternate airport; model fuel reserve exhausted
+EVENT 229 [T=0031] [FUEL     ] GA010 fuel: 7 -> 6
+EVENT 230 [T=0031] [FUEL     ] GA012 fuel: 16 -> 15
+EVENT 231 [T=0031] [FUEL     ] GA014 fuel: 7 -> 6
+EVENT 232 [T=0031] [FUEL     ] GA015 fuel: 12 -> 10
+EVENT 233 [T=0031] [FINISH   ] GD009 completed TAKEOFF on RWY-B
+EVENT 234 [T=0031] [RELEASE  ] RWY-B released; next start not before T=32
+EVENT 235 [T=0031] [FINISH   ] GD012 completed TAKEOFF on RWY-C
+EVENT 236 [T=0031] [RELEASE  ] RWY-C released; next start not before T=32
+EVENT 237 [T=0032] [FUEL     ] GA010 fuel: 6 -> 5
+EVENT 238 [T=0032] [FUEL     ] GA012 fuel: 15 -> 14
+EVENT 239 [T=0032] [FUEL     ] GA014 fuel: 6 -> 5
+EVENT 240 [T=0032] [FUEL     ] GA015 fuel: 10 -> 8
+EVENT 241 [T=0032] [REQUEST  ] GA016 requests LANDING type=B77W required=3100 priority=2 fuel=10 burn=1 scheduled=32
+EVENT 242 [T=0032] [QUEUE    ] GA016 entered waiting queue
+EVENT 243 [T=0032] [ASSIGN   ] ATC assigned GD013 to RWY-B
+EVENT 244 [T=0032] [START    ] GD013 started TAKEOFF on RWY-B; finish at T=35
+EVENT 245 [T=0033] [FUEL     ] GA010 fuel: 5 -> 4
+EVENT 246 [T=0033] [FUEL     ] GA012 fuel: 14 -> 13
+EVENT 247 [T=0033] [FUEL     ] GA014 fuel: 5 -> 4
+EVENT 248 [T=0033] [FUEL     ] GA015 fuel: 8 -> 6
+EVENT 249 [T=0033] [EMERGENCY] GA015 has critical fuel=6; emergency priority enabled
+EVENT 250 [T=0033] [FUEL     ] GA016 fuel: 10 -> 9
+EVENT 251 [T=0033] [REQUEST  ] GD014 requests TAKEOFF type=B738 required=2000 priority=2 fuel=0 burn=0 scheduled=33
+EVENT 252 [T=0033] [QUEUE    ] GD014 entered waiting queue
+EVENT 253 [T=0034] [FUEL     ] GA010 fuel: 4 -> 3
+EVENT 254 [T=0034] [EMERGENCY] GA010 has critical fuel=3; emergency priority enabled
+EVENT 255 [T=0034] [FUEL     ] GA012 fuel: 13 -> 12
+EVENT 256 [T=0034] [FUEL     ] GA014 fuel: 4 -> 3
+EVENT 257 [T=0034] [EMERGENCY] GA014 has critical fuel=3; emergency priority enabled
+EVENT 258 [T=0034] [FUEL     ] GA015 fuel: 6 -> 4
+EVENT 259 [T=0034] [FUEL     ] GA016 fuel: 9 -> 8
+EVENT 260 [T=0035] [FUEL     ] GA010 fuel: 3 -> 2
+EVENT 261 [T=0035] [FUEL     ] GA012 fuel: 12 -> 11
+EVENT 262 [T=0035] [FUEL     ] GA014 fuel: 3 -> 2
+EVENT 263 [T=0035] [FUEL     ] GA015 fuel: 4 -> 2
+EVENT 264 [T=0035] [FUEL     ] GA016 fuel: 8 -> 7
+EVENT 265 [T=0035] [FINISH   ] GD013 completed TAKEOFF on RWY-B
+EVENT 266 [T=0035] [RELEASE  ] RWY-B released; next start not before T=36
+EVENT 267 [T=0036] [FUEL     ] GA010 fuel: 2 -> 1
+EVENT 268 [T=0036] [FUEL     ] GA012 fuel: 11 -> 10
+EVENT 269 [T=0036] [FUEL     ] GA014 fuel: 2 -> 1
+EVENT 270 [T=0036] [FUEL     ] GA015 fuel: 2 -> 0
+EVENT 271 [T=0036] [DIVERT   ] GA015 left for alternate airport; model fuel reserve exhausted
+EVENT 272 [T=0036] [FUEL     ] GA016 fuel: 7 -> 6
+EVENT 273 [T=0036] [ASSIGN   ] ATC assigned GD014 to RWY-B
+EVENT 274 [T=0036] [START    ] GD014 started TAKEOFF on RWY-B; finish at T=39
+EVENT 275 [T=0037] [FUEL     ] GA010 fuel: 1 -> 0
+EVENT 276 [T=0037] [DIVERT   ] GA010 left for alternate airport; model fuel reserve exhausted
+EVENT 277 [T=0037] [FUEL     ] GA012 fuel: 10 -> 9
+EVENT 278 [T=0037] [FUEL     ] GA014 fuel: 1 -> 0
+EVENT 279 [T=0037] [DIVERT   ] GA014 left for alternate airport; model fuel reserve exhausted
+EVENT 280 [T=0037] [FUEL     ] GA016 fuel: 6 -> 5
+EVENT 281 [T=0038] [FUEL     ] GA012 fuel: 9 -> 8
+EVENT 282 [T=0038] [FUEL     ] GA016 fuel: 5 -> 4
+EVENT 283 [T=0038] [OPEN     ] RWY-A closure ended; effective_closed=0
+EVENT 284 [T=0038] [ASSIGN   ] ATC assigned GA016 to RWY-A
+EVENT 285 [T=0038] [START    ] GA016 started LANDING on RWY-A; finish at T=43
+EVENT 286 [T=0039] [FUEL     ] GA012 fuel: 8 -> 7
+EVENT 287 [T=0039] [FINISH   ] GD014 completed TAKEOFF on RWY-B
+EVENT 288 [T=0039] [RELEASE  ] RWY-B released; next start not before T=40
+EVENT 289 [T=0040] [FUEL     ] GA012 fuel: 7 -> 6
+EVENT 290 [T=0041] [FUEL     ] GA012 fuel: 6 -> 5
+EVENT 291 [T=0042] [FUEL     ] GA012 fuel: 5 -> 4
+EVENT 292 [T=0043] [FUEL     ] GA012 fuel: 4 -> 3
+EVENT 293 [T=0043] [EMERGENCY] GA012 has critical fuel=3; emergency priority enabled
+EVENT 294 [T=0043] [FINISH   ] GA016 completed LANDING on RWY-A
+EVENT 295 [T=0043] [RELEASE  ] RWY-A released; next start not before T=45
+EVENT 296 [T=0044] [FUEL     ] GA012 fuel: 3 -> 2
+EVENT 297 [T=0045] [FUEL     ] GA012 fuel: 2 -> 1
+EVENT 298 [T=0045] [ASSIGN   ] ATC assigned GA012 to RWY-A (EMERGENCY)
+EVENT 299 [T=0045] [START    ] GA012 started LANDING on RWY-A; finish at T=49
+EVENT 300 [T=0049] [FINISH   ] GA012 completed LANDING on RWY-A
+EVENT 301 [T=0049] [RELEASE  ] RWY-A released; next start not before T=51
+EVENT 302 [T=0051] [ASSIGN   ] ATC assigned GD010 to RWY-A
+EVENT 303 [T=0051] [START    ] GD010 started TAKEOFF on RWY-A; finish at T=56
+EVENT 304 [T=0052] [CLOSE    ] RWY-C closed for new operations; active operation continues; scheduled=52
+EVENT 305 [T=0056] [FINISH   ] GD010 completed TAKEOFF on RWY-A
+EVENT 306 [T=0056] [RELEASE  ] RWY-A released; next start not before T=58
+EVENT 307 [T=0058] [ASSIGN   ] ATC assigned GD011 to RWY-A
+EVENT 308 [T=0058] [START    ] GD011 started TAKEOFF on RWY-A; finish at T=63
+EVENT 309 [T=0060] [OPEN     ] RWY-C closure ended; effective_closed=0
+EVENT 310 [T=0063] [FINISH   ] GD011 completed TAKEOFF on RWY-A
+EVENT 311 [T=0063] [RELEASE  ] RWY-A released; next start not before T=65
+EVENT 312 [T=0063] [COMPLETE ] all aircraft requests have a final outcome
+SUMMARY === SUMMARY ===
+SUMMARY termination=ALL_REQUESTS_COMPLETED, last_tick=63
+SUMMARY aircraft_total=30, landed=10, took_off=14, diverted=6, waiting=0, operating=0, pending=0
+SUMMARY dispatcher=ATC assignments=24 emergency_assignments=1
+SUMMARY runway=RWY-A completed_operations=9
+SUMMARY runway=RWY-B completed_operations=10
+SUMMARY runway=RWY-C completed_operations=5
+BYE ALL_REQUESTS_COMPLETED

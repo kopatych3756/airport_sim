@@ -1,0 +1,16 @@
+READY bind=127.0.0.1 port=33759 aircraft=3 runways=1 startup_ms=20000
+CONNECTED role=RUNWAY name=R1
+[T=0000] [NETWORK  ] runway=R1 ready=1
+CONNECTED role=AIRCRAFT name=D1
+[T=0000] [NETWORK  ] aircraft=D1 request=accepted
+CONNECTED role=AIRCRAFT name=D2
+[T=0000] [NETWORK  ] aircraft=D2 request=accepted
+CONNECTED role=AIRCRAFT name=A1
+[T=0000] [NETWORK  ] aircraft=A1 request=accepted
+CONNECTED role=WATCH name=station0
+CONNECTED role=WATCH name=station1
+CONNECTED role=WATCH name=station2
+[T=0000] [SHIFT    ] simulation started; seed=31
+[T=0000] [ASSIGN   ] ATC assigned D1 to R1
+[T=0000] [STOP     ] simulation interrupted by user or termination signal
+SERVER_END reason=USER_INTERRUPT tick=0

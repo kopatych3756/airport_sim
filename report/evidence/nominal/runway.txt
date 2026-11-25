@@ -1,0 +1,12 @@
+WELCOME RUNWAY R-LONG
+RUNWAY R-LONG length=3200 safety=1 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=0 enabled=1
+ACK READY
+EVENT 12 [T=0000] [ASSIGN   ] ATC assigned D001 to R-LONG
+EVENT 14 [T=0000] [START    ] D001 started TAKEOFF on R-LONG; finish at T=4
+EVENT 25 [T=0004] [FINISH   ] D001 completed TAKEOFF on R-LONG
+EVENT 26 [T=0004] [RELEASE  ] R-LONG released; next start not before T=5
+EVENT 30 [T=0005] [ASSIGN   ] ATC assigned A002 to R-LONG
+EVENT 31 [T=0005] [START    ] A002 started LANDING on R-LONG; finish at T=9
+EVENT 34 [T=0009] [FINISH   ] A002 completed LANDING on R-LONG
+EVENT 35 [T=0009] [RELEASE  ] R-LONG released; next start not before T=10
+BYE ALL_REQUESTS_COMPLETED
