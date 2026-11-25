@@ -1,0 +1,8 @@
+WELCOME RUNWAY R1
+RUNWAY R1 length=2600 safety=2 closed=0 active=- finish=-1 next_free=14 completed=1 connected=1 ready=0 enabled=1
+ACK READY
+EVENT 35 [T=0014] [ASSIGN   ] ATC assigned D2 to R1
+EVENT 36 [T=0014] [START    ] D2 started TAKEOFF on R1; finish at T=26
+EVENT 37 [T=0026] [FINISH   ] D2 completed TAKEOFF on R1
+EVENT 38 [T=0026] [RELEASE  ] R1 released; next start not before T=28
+BYE ALL_REQUESTS_COMPLETED

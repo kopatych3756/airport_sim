@@ -1,0 +1,9 @@
+WELCOME AIRCRAFT A001
+AIRCRAFT A001 operation=ARRIVAL type=A320 required=1800 scheduled=0 duration=3 priority=1 emergency=0 state=PENDING fuel=20 burn=1 runway=- connected=1 requested=0 enabled=1
+ACK REQUEST ACCEPTED
+EVENT 8 [T=0000] [REQUEST  ] A001 requests LANDING type=A320 required=1800 priority=1 fuel=20 burn=1 scheduled=0
+EVENT 9 [T=0000] [QUEUE    ] A001 entered waiting queue
+EVENT 13 [T=0000] [ASSIGN   ] ATC assigned A001 to R-SHORT
+EVENT 15 [T=0000] [START    ] A001 started LANDING on R-SHORT; finish at T=3
+EVENT 22 [T=0003] [FINISH   ] A001 completed LANDING on R-SHORT
+BYE ALL_REQUESTS_COMPLETED

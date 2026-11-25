@@ -1,0 +1,48 @@
+WELCOME WATCH tower
+SNAPSHOT BEGIN seq=6 tick=0 phase=REGISTERING
+AIRPORT seed=1 max_ticks=40 delay_ms=0 emergency_fuel_ticks=2 runways=2 aircraft=4
+DISPATCHER ATC assignments=0 emergency_assignments=0
+RUNWAY R-LONG length=3200 safety=1 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+RUNWAY R-SHORT length=2200 safety=1 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+AIRCRAFT A001 operation=ARRIVAL type=A320 required=1800 scheduled=0 duration=3 priority=1 emergency=0 state=PENDING fuel=20 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT D001 operation=DEPARTURE type=B77W required=3000 scheduled=0 duration=4 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT A002 operation=ARRIVAL type=B77W required=3000 scheduled=1 duration=4 priority=1 emergency=0 state=PENDING fuel=18 burn=1 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT D002 operation=DEPARTURE type=E190 required=1500 scheduled=2 duration=2 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+SNAPSHOT END seq=6
+EVENT 7 [T=0000] [SHIFT    ] simulation started; seed=1
+EVENT 8 [T=0000] [REQUEST  ] A001 requests LANDING type=A320 required=1800 priority=1 fuel=20 burn=1 scheduled=0
+EVENT 9 [T=0000] [QUEUE    ] A001 entered waiting queue
+EVENT 10 [T=0000] [REQUEST  ] D001 requests TAKEOFF type=B77W required=3000 priority=2 fuel=0 burn=0 scheduled=0
+EVENT 11 [T=0000] [QUEUE    ] D001 entered waiting queue
+EVENT 12 [T=0000] [ASSIGN   ] ATC assigned D001 to R-LONG
+EVENT 13 [T=0000] [ASSIGN   ] ATC assigned A001 to R-SHORT
+EVENT 14 [T=0000] [START    ] D001 started TAKEOFF on R-LONG; finish at T=4
+EVENT 15 [T=0000] [START    ] A001 started LANDING on R-SHORT; finish at T=3
+EVENT 16 [T=0001] [REQUEST  ] A002 requests LANDING type=B77W required=3000 priority=1 fuel=18 burn=1 scheduled=1
+EVENT 17 [T=0001] [QUEUE    ] A002 entered waiting queue
+EVENT 18 [T=0002] [FUEL     ] A002 fuel: 18 -> 17
+EVENT 19 [T=0002] [REQUEST  ] D002 requests TAKEOFF type=E190 required=1500 priority=2 fuel=0 burn=0 scheduled=2
+EVENT 20 [T=0002] [QUEUE    ] D002 entered waiting queue
+EVENT 21 [T=0003] [FUEL     ] A002 fuel: 17 -> 16
+EVENT 22 [T=0003] [FINISH   ] A001 completed LANDING on R-SHORT
+EVENT 23 [T=0003] [RELEASE  ] R-SHORT released; next start not before T=4
+EVENT 24 [T=0004] [FUEL     ] A002 fuel: 16 -> 15
+EVENT 25 [T=0004] [FINISH   ] D001 completed TAKEOFF on R-LONG
+EVENT 26 [T=0004] [RELEASE  ] R-LONG released; next start not before T=5
+EVENT 27 [T=0004] [ASSIGN   ] ATC assigned D002 to R-SHORT
+EVENT 28 [T=0004] [START    ] D002 started TAKEOFF on R-SHORT; finish at T=6
+EVENT 29 [T=0005] [FUEL     ] A002 fuel: 15 -> 14
+EVENT 30 [T=0005] [ASSIGN   ] ATC assigned A002 to R-LONG
+EVENT 31 [T=0005] [START    ] A002 started LANDING on R-LONG; finish at T=9
+EVENT 32 [T=0006] [FINISH   ] D002 completed TAKEOFF on R-SHORT
+EVENT 33 [T=0006] [RELEASE  ] R-SHORT released; next start not before T=7
+EVENT 34 [T=0009] [FINISH   ] A002 completed LANDING on R-LONG
+EVENT 35 [T=0009] [RELEASE  ] R-LONG released; next start not before T=10
+EVENT 36 [T=0009] [COMPLETE ] all aircraft requests have a final outcome
+SUMMARY === SUMMARY ===
+SUMMARY termination=ALL_REQUESTS_COMPLETED, last_tick=9
+SUMMARY aircraft_total=4, landed=2, took_off=2, diverted=0, waiting=0, operating=0, pending=0
+SUMMARY dispatcher=ATC assignments=4 emergency_assignments=0
+SUMMARY runway=R-LONG completed_operations=2
+SUMMARY runway=R-SHORT completed_operations=2
+BYE ALL_REQUESTS_COMPLETED

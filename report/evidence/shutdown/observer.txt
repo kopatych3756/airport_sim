@@ -1,0 +1,24 @@
+WELCOME WATCH station0
+SNAPSHOT BEGIN seq=4 tick=0 phase=REGISTERING
+AIRPORT seed=31 max_ticks=0 delay_ms=60 emergency_fuel_ticks=3 runways=1 aircraft=3
+DISPATCHER ATC assignments=0 emergency_assignments=0
+RUNWAY R1 length=2600 safety=2 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=1 enabled=1
+AIRCRAFT D1 operation=DEPARTURE type=A320 required=1800 scheduled=0 duration=12 priority=2 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT D2 operation=DEPARTURE type=A320 required=1800 scheduled=1 duration=12 priority=1 emergency=0 state=PENDING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT A1 operation=ARRIVAL type=A320 required=1800 scheduled=2 duration=4 priority=1 emergency=0 state=PENDING fuel=9 burn=1 runway=- connected=1 requested=1 enabled=1
+SNAPSHOT END seq=4
+EVENT 5 [T=0000] [SHIFT    ] simulation started; seed=31
+EVENT 6 [T=0000] [REQUEST  ] D1 requests TAKEOFF type=A320 required=1800 priority=2 fuel=0 burn=0 scheduled=0
+EVENT 7 [T=0000] [QUEUE    ] D1 entered waiting queue
+EVENT 8 [T=0000] [ASSIGN   ] ATC assigned D1 to R1
+EVENT 9 [T=0000] [START    ] D1 started TAKEOFF on R1; finish at T=12
+EVENT 10 [T=0000] [STOP     ] simulation interrupted by user or termination signal
+SUMMARY === SUMMARY ===
+SUMMARY termination=USER_INTERRUPT, last_tick=0
+SUMMARY aircraft_total=3, landed=0, took_off=0, diverted=0, waiting=0, operating=1, pending=2
+SUMMARY dispatcher=ATC assignments=1 emergency_assignments=0
+SUMMARY runway=R1 completed_operations=0
+SUMMARY unfinished=D1 state=OPERATING fuel=0
+SUMMARY unfinished=D2 state=PENDING fuel=0
+SUMMARY unfinished=A1 state=PENDING fuel=9
+BYE USER_INTERRUPT

@@ -1,0 +1,6 @@
+WELCOME RUNWAY R1
+RUNWAY R1 length=2600 safety=2 closed=0 active=- finish=-1 next_free=0 completed=0 connected=1 ready=0 enabled=1
+ACK READY
+EVENT 8 [T=0000] [ASSIGN   ] ATC assigned D1 to R1
+EVENT 9 [T=0000] [START    ] D1 started TAKEOFF on R1; finish at T=12
+BYE ADMIN_OFFLINE

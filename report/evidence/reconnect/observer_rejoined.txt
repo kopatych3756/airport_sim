@@ -1,0 +1,24 @@
+WELCOME WATCH apron
+SNAPSHOT BEGIN seq=30 tick=12 phase=RUNNING
+AIRPORT seed=31 max_ticks=80 delay_ms=60 emergency_fuel_ticks=3 runways=1 aircraft=3
+DISPATCHER ATC assignments=1 emergency_assignments=0
+RUNWAY R1 length=2600 safety=2 closed=0 active=- finish=-1 next_free=14 completed=1 connected=0 ready=0 enabled=0
+AIRCRAFT D1 operation=DEPARTURE type=A320 required=1800 scheduled=0 duration=12 priority=2 emergency=0 state=DONE fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT D2 operation=DEPARTURE type=A320 required=1800 scheduled=1 duration=12 priority=1 emergency=0 state=WAITING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT A1 operation=ARRIVAL type=A320 required=1800 scheduled=2 duration=4 priority=1 emergency=1 state=DIVERTED fuel=0 burn=1 runway=- connected=0 requested=1 enabled=0
+SNAPSHOT END seq=30
+EVENT 31 [T=0012] [CONTROL  ] role=AIRCRAFT name=A1 enabled=1
+EVENT 32 [T=0012] [NETWORK  ] aircraft=A1 request=already_accepted
+EVENT 33 [T=0012] [CONTROL  ] role=RUNWAY name=R1 enabled=1
+EVENT 34 [T=0012] [NETWORK  ] runway=R1 ready=1
+EVENT 35 [T=0014] [ASSIGN   ] ATC assigned D2 to R1
+EVENT 36 [T=0014] [START    ] D2 started TAKEOFF on R1; finish at T=26
+EVENT 37 [T=0026] [FINISH   ] D2 completed TAKEOFF on R1
+EVENT 38 [T=0026] [RELEASE  ] R1 released; next start not before T=28
+EVENT 39 [T=0026] [COMPLETE ] all aircraft requests have a final outcome
+SUMMARY === SUMMARY ===
+SUMMARY termination=ALL_REQUESTS_COMPLETED, last_tick=26
+SUMMARY aircraft_total=3, landed=0, took_off=2, diverted=1, waiting=0, operating=0, pending=0
+SUMMARY dispatcher=ATC assignments=2 emergency_assignments=0
+SUMMARY runway=R1 completed_operations=2
+BYE ALL_REQUESTS_COMPLETED

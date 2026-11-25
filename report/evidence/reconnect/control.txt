@@ -1,0 +1,44 @@
+$ off RUNWAY R1
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ off AIRCRAFT A1
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ off WATCH apron
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ status
+WELCOME CONTROL
+SNAPSHOT BEGIN seq=29 tick=12 phase=RUNNING
+AIRPORT seed=31 max_ticks=80 delay_ms=60 emergency_fuel_ticks=3 runways=1 aircraft=3
+DISPATCHER ATC assignments=1 emergency_assignments=0
+RUNWAY R1 length=2600 safety=2 closed=0 active=- finish=-1 next_free=14 completed=1 connected=0 ready=0 enabled=0
+AIRCRAFT D1 operation=DEPARTURE type=A320 required=1800 scheduled=0 duration=12 priority=2 emergency=0 state=DONE fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT D2 operation=DEPARTURE type=A320 required=1800 scheduled=1 duration=12 priority=1 emergency=0 state=WAITING fuel=0 burn=0 runway=- connected=1 requested=1 enabled=1
+AIRCRAFT A1 operation=ARRIVAL type=A320 required=1800 scheduled=2 duration=4 priority=1 emergency=1 state=DIVERTED fuel=0 burn=1 runway=- connected=0 requested=1 enabled=0
+WATCH tower connected=1 enabled=1
+WATCH apron connected=0 enabled=0
+SNAPSHOT END seq=29
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ on WATCH apron
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ on AIRCRAFT A1
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE
+
+$ on RUNWAY R1
+WELCOME CONTROL
+RESULT OK
+BYE CONTROL_COMPLETE

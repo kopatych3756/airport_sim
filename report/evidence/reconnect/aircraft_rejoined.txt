@@ -1,0 +1,4 @@
+WELCOME AIRCRAFT A1
+AIRCRAFT A1 operation=ARRIVAL type=A320 required=1800 scheduled=2 duration=4 priority=1 emergency=1 state=DIVERTED fuel=0 burn=1 runway=- connected=1 requested=1 enabled=1
+ACK REQUEST ALREADY_ACCEPTED
+BYE ALL_REQUESTS_COMPLETED
